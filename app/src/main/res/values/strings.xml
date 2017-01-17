@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">PizzaPalApp</string>
+    <string name="title_activity_sign_in">SignInActivity</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="fresh_config">Fresh Config</string>
+    <string name="cause_crash">Cause Crash</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="contacts_permission_rationale">Access to account information is required to sign in.</string>
+    <string name="invite_menu_label">Invite</string>
+</resources>
