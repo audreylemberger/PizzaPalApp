@@ -35,8 +35,8 @@ public class AddActivity extends AppCompatActivity {
         if (getIntent().getSerializableExtra(MainActivity.KEY_EDIT) != null) {
             itemToEdit = (Pizza) getIntent().getSerializableExtra(MainActivity.KEY_EDIT);
         }
-        addButton = ((Button)findViewById(R.id.addButton));
-        cancelButton = ((Button)findViewById(R.id.cancelButton));
+        addButton = ((Button)findViewById(R.id.backButton));
+        cancelButton = ((Button)findViewById(R.id.doneButton));
         gfBox = ((CheckBox) findViewById(R.id.gfBox));
         vegBox = ((CheckBox) findViewById(R.id.vegBox));
         kosherBox = ((CheckBox) findViewById(R.id.kosherBox));

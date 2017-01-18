@@ -68,9 +68,9 @@
                 android:text="Add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/addButton"
-                android:layout_alignBaseline="@+id/cancelButton"
-                android:layout_alignBottom="@+id/cancelButton"
+                android:id="@+id/backButton"
+                android:layout_alignBaseline="@+id/doneButton"
+                android:layout_alignBottom="@+id/doneButton"
                 android:layout_alignRight="@+id/dietText"
                 android:layout_alignEnd="@+id/dietText" />
 
@@ -105,7 +105,7 @@
                 android:text="Cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cancelButton"
+                android:id="@+id/doneButton"
                 android:layout_marginBottom="27dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignRight="@+id/toppingsEd"
@@ -118,9 +118,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/vegBox"
-                android:layout_above="@+id/addButton"
-                android:layout_alignRight="@+id/cancelButton"
-                android:layout_alignEnd="@+id/cancelButton"
+                android:layout_above="@+id/backButton"
+                android:layout_alignRight="@+id/doneButton"
+                android:layout_alignEnd="@+id/doneButton"
                 android:layout_marginBottom="26dp" />
 
             <CheckBox
