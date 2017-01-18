@@ -114,7 +114,6 @@ public class Pizza
     }
 
 
-
     public Pizza(String room, String building, String toppings, String vend, boolean isVegan, boolean
             isVeg, boolean isKosher, boolean isGF)
     {
@@ -130,6 +129,17 @@ public class Pizza
         this.isVeg = isVeg;
         this.isKosher = isKosher;
         this.isGF = isGF;
+
+
+        //take care of assumptions for dietary restrictions
+        if(isVegan) {
+            isVeg = true;
+            isKosher = true;
+        } else if(isVeg) {
+            isKosher = true;
+        }
+
+
         //this.note = note;
 //        delivered = System.currentTimeMillis();
 //        delivered.set(Calendar.DAY_OF_YEAR, Calendar.DATE, Calendar.HOUR,Calendar.MINUTE, Calendar.SECOND);
