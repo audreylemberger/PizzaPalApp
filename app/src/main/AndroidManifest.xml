@@ -20,7 +20,8 @@
             android:label="@string/title_activity_sign_in"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AddActivity" />
-        <activity android:name=".SplashActivity"></activity>
+        <activity android:name=".SplashActivity" />
+        <activity android:name=".PizzaViewActivity"></activity>
     </application>
 
 </manifest>
