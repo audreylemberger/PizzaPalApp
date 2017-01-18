@@ -5,6 +5,7 @@ package com.example.demouser.pizzapalapp;
  */
 
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
@@ -27,6 +28,15 @@ public class Pizza
     private boolean isKosher;
     private boolean isGF;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    private String id;
     private String vendor;
 
     private String toppings;

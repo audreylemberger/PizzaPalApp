@@ -58,6 +58,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity
         implements GoogleApiClient.OnConnectionFailedListener {
 
+    private static final int REQUEST_NEW_ITEM = 101;
+    public static final String KEY_EDIT = "KEY_EDIT";
+    private Pizza itemToEditHolder;
+    private int itemToEditPosition = -1;
+
     public static class MessageViewHolder extends RecyclerView.ViewHolder {
         private TextView itemNameView;
         private TextView priceView;

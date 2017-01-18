@@ -100,11 +100,12 @@ public class AddActivity extends AppCompatActivity {
         itemResult.setRoom(roomNumber.getText().toString());
         itemResult.setBuilding(buildingItems[buildings.getSelectedItemPosition()]);
         itemResult.setBuilding((buildings.getSelectedItem().toString()));
-        itemResult.setIsVegan(veganBox.isChecked());
-        itemResult.setIsVegetarian(vegBox.isChecked());
-        itemResult.setIsKosher(kosherBox.isChecked());
-        itemResult.setIsGF(gfBox.isChecked());
+        itemResult.setVegan(veganBox.isChecked());
+        itemResult.setVeg(vegBox.isChecked());
+        itemResult.setKosher(kosherBox.isChecked());
+        itemResult.setGF(gfBox.isChecked());
 
+        //instead get from firebase database
         intentResult.putExtra(KEY_ITEM, itemResult);
         setResult(RESULT_OK, intentResult);
         finish();
