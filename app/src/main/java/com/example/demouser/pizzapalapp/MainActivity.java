@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity
     private Pizza itemToEditHolder;
     private int itemToEditPosition = -1;
 
-    public class MessageViewHolder extends RecyclerView.ViewHolder {
+    public static class MessageViewHolder extends RecyclerView.ViewHolder {
         private TextView itemNameView;
         private TextView priceView;
         private ImageView ivIcon;
@@ -79,9 +79,10 @@ public class MainActivity extends AppCompatActivity
             viewButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, PizzaViewActivity.class);
-                    intent.putExtra(KEY_VIEW, mMessageRecyclerView);
-                    startActivity(intent);
+                    Intent intent = new Intent(v.getContext(), PizzaViewActivity.class);
+                    intent.putExtra(KEY_VIEW, getAdapterPosition());
+                    v.getContext().startActivity(intent);
+
                 }
             });
         }
