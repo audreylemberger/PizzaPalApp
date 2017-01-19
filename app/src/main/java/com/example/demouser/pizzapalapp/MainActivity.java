@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity
                 else {
                     viewHolder.ivIcon.setImageResource(R.drawable.none);
                 }
-                
+
 
             }
         };
