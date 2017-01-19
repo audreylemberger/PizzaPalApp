@@ -10,6 +10,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class AddActivity extends AppCompatActivity {
 
 
@@ -26,6 +32,8 @@ public class AddActivity extends AppCompatActivity {
     private EditText roomNumber;
     private EditText venderInfo;
     String[] buildingItems;
+    private DatabaseReference mFirebaseDatabase;
+    private Pizza itemResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +72,7 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                saveItem();
+                configureDatabase();
 
             }
         });
@@ -85,31 +93,75 @@ public class AddActivity extends AppCompatActivity {
     }
 
 
+    private void configureDatabase(){
+        mFirebaseDatabase =  FirebaseDatabase.getInstance().getReference();
 
-    private void saveItem() {
-        Intent intentResult = new Intent();
-        Pizza itemResult = null;
-        if (itemToEdit != null) {
-            itemResult = itemToEdit;
-        } else {
-            itemResult = new Pizza();
+        mFirebaseDatabase.child("players").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                itemResult = dataSnapshot.getValue(Pizza.class);
 
-        }
+                itemResult.setRoom(roomNumber.getText().toString());
+                itemResult.setBuilding(buildingItems[buildings.getSelectedItemPosition()]);
+                itemResult.setBuilding((buildings.getSelectedItem().toString()));
+                itemResult.setVegan(veganBox.isChecked());
+                itemResult.setVeg(vegBox.isChecked());
+                itemResult.setKosher(kosherBox.isChecked());
+                itemResult.setGF(gfBox.isChecked());
+                //mFirebaseDatabase.child("pizza").child(itemResult.getId()).setValue(itemResult);
 
 
-        itemResult.setRoom(roomNumber.getText().toString());
-        itemResult.setBuilding(buildingItems[buildings.getSelectedItemPosition()]);
-        itemResult.setBuilding((buildings.getSelectedItem().toString()));
-        itemResult.setVegan(veganBox.isChecked());
-        itemResult.setVeg(vegBox.isChecked());
-        itemResult.setKosher(kosherBox.isChecked());
-        itemResult.setGF(gfBox.isChecked());
+            }
 
-        //instead get from firebase database
-        intentResult.putExtra(KEY_ITEM, itemResult);
-        setResult(RESULT_OK, intentResult);
-        finish();
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        //if doesnt exist, adds players as id
+        mFirebaseDatabase.child("pizza").push().setValue(itemResult);
     }
+
+//    private void saveItem() {
+//        Intent intentResult = new Intent();
+//        Pizza itemResult = null;
+//        if (itemToEdit != null) {
+//            itemResult = itemToEdit;
+//        } else {
+//            itemResult = new Pizza();
+//
+//        }
+//
+//
+//        itemResult.setRoom(roomNumber.getText().toString());
+//        itemResult.setBuilding(buildingItems[buildings.getSelectedItemPosition()]);
+//        itemResult.setBuilding((buildings.getSelectedItem().toString()));
+//        itemResult.setVegan(veganBox.isChecked());
+//        itemResult.setVeg(vegBox.isChecked());
+//        itemResult.setKosher(kosherBox.isChecked());
+//        itemResult.setGF(gfBox.isChecked());
+//
+//        //instead get from firebase database
+//        intentResult.putExtra(KEY_ITEM, itemResult);
+//        setResult(RESULT_OK, intentResult);
+//        finish();
+//    }
 
 
 

@@ -91,11 +91,11 @@ public class MainActivity extends AppCompatActivity
     private GoogleApiClient mGoogleApiClient;
     private static final String MESSAGE_URL = "http://friendlychat.firebase.google.com/message/";
 
-    private Button mSendButton;
+    private Button mAddButton;
     private RecyclerView mMessageRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
     private ProgressBar mProgressBar;
-    private EditText mMessageEditText;
+
 
     // Firebase instance variables
 
@@ -138,37 +138,20 @@ public class MainActivity extends AppCompatActivity
 
         configureFirebaseAdapater();
 
-        mMessageEditText = (EditText) findViewById(R.id.messageEditText);
-        mMessageEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(mSharedPreferences
-                .getInt(CodelabPreferences.FRIENDLY_MSG_LENGTH, DEFAULT_MSG_LENGTH_LIMIT))});
-        mMessageEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.toString().trim().length() > 0) {
-                    mSendButton.setEnabled(true);
-                } else {
-                    mSendButton.setEnabled(false);
-                }
-            }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
-            }
-        });
-
-        mSendButton = (Button) findViewById(R.id.sendButton);
-        mSendButton.setOnClickListener(new View.OnClickListener() {
+        mAddButton = (Button) findViewById(R.id.addPizzaButton);
+        mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Send messages on click.
-                Pizza message = new FriendlyMessage(mMessageEditText.getText().toString(),
-                        mUsername,mPhotoUrl);
-                mFirebaseDataReference.child(MESSAGES_CHILD).push().setValue(message);
-                mMessageEditText.setText("");
+//                Pizza message = new FriendlyMessage(mMessageEditText.getText().toString(),
+//                        mUsername,mPhotoUrl);
+//                mFirebaseDataReference.child(MESSAGES_CHILD).push().setValue(message);
+//                mMessageEditText.setText("");
+
+
+                //change to add pizza activity
             }
         });
     }
@@ -234,14 +217,10 @@ public class MainActivity extends AppCompatActivity
             @Override
             protected void populateViewHolder(MessageViewHolder viewHolder, Pizza model, int position) {
                 mProgressBar.setVisibility(ProgressBar.INVISIBLE);
-                viewHolder.messageTextView.setText(model.getText());
-                viewHolder.messengerTextView.setText(model.getName());
+                viewHolder.itemNameView.setText(model.getBuilding() + " " +model.getRoom());
+                viewHolder.priceView.setText(model.getToppings());
 
-                if(model.getPhotoUrl() == null){
-                    viewHolder.messengerImageView.setImageResource(R.drawable.ic_account_circle_black_36dp);
-                }else{
-                    Glide.with(MainActivity.this).load(model.getPhotoUrl()).into(viewHolder.messengerImageView);
-                }
+
             }
         };
 
