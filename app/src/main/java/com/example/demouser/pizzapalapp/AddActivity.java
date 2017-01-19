@@ -102,17 +102,26 @@ public class AddActivity extends AppCompatActivity {
         mFirebaseDatabase.child("pizza").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                itemResult = dataSnapshot.getValue(Pizza.class);
+//                itemResult = dataSnapshot.getValue(Pizza.class);
+//
+//                itemResult.setRoom(roomNumber.getText().toString());
+//                itemResult.setBuilding(buildingItems[buildings.getSelectedItemPosition()]);
+//                itemResult.setBuilding((buildings.getSelectedItem().toString()));
+//                itemResult.setVegan(veganBox.isChecked());
+//                itemResult.setVeg(vegBox.isChecked());
+//                itemResult.setKosher(kosherBox.isChecked());
+//                itemResult.setGF(gfBox.isChecked());
+//                //mFirebaseDatabase.child("pizza").child(itemResult.getId()).setValue(itemResult);
 
-                itemResult.setRoom(roomNumber.getText().toString());
-                itemResult.setBuilding(buildingItems[buildings.getSelectedItemPosition()]);
-                itemResult.setBuilding((buildings.getSelectedItem().toString()));
-                itemResult.setVegan(veganBox.isChecked());
-                itemResult.setVeg(vegBox.isChecked());
-                itemResult.setKosher(kosherBox.isChecked());
-                itemResult.setGF(gfBox.isChecked());
-                //mFirebaseDatabase.child("pizza").child(itemResult.getId()).setValue(itemResult);
-
+                Pizza pizza = new Pizza();
+                pizza.setBuilding(buildingItems[buildings.getSelectedItemPosition()]);
+                pizza.setRoom(roomNumber.getText().toString());
+                pizza.setVegan(veganBox.isChecked());
+                pizza.setVeg(vegBox.isChecked());
+                pizza.setKosher(kosherBox.isChecked());
+                pizza.setGF(gfBox.isChecked());
+                //TODO: figure out setting ID
+                mFirebaseDatabase.child("pizza").push().setValue(pizza);
 
             }
 
