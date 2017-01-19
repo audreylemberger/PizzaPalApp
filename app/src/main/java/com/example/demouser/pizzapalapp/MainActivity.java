@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), PizzaViewActivity.class);
-                    intent.putExtra(KEY_VIEW, getAdapterPosition());
+                    intent.putExtra(KEY_VIEW, pizzaId.getText().toString());
 
                     v.getContext().startActivity(intent);
 
@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity
                 mProgressBar.setVisibility(ProgressBar.INVISIBLE);
                 viewHolder.itemNameView.setText(model.getBuilding() + " " +model.getRoom());
                 viewHolder.priceView.setText(model.getToppings());
-                viewHolder.
+                viewHolder.pizzaId.setText(model.getId());
 
                 //find the correct image resource
                 if(model.isVegan()) {
