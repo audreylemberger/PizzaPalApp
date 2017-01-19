@@ -18,14 +18,13 @@ public class PizzaViewActivity extends AppCompatActivity {
     private CheckBox vegan;
     private CheckBox vegetarian;
 
-    private CheckBox gf;
-
     private CheckBox kosher;
     private CheckBox glutenFree;
-    private Button backButton;
     private Button doneButton;
+
     private DatabaseReference mFirebaseDatabase;
     private Pizza pizza;
+
 
 
     @Override
@@ -34,31 +33,27 @@ public class PizzaViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pizza_view);
 
         Intent intent = getIntent();
-        String loc = intent.getStringExtra(Pizza.getBuilding()) + " " + intent.getStringExtra(Pizza.getRoom());
+        //String loc = intent.getStringExtra(Pizza.getBuilding()) + " " + intent.getStringExtra(Pizza.getRoom());
 
 
         //get it from firebase
-        mFirebaseDatabase.child("pizza").child(pizza.getId()).setValue(game);
+        mFirebaseDatabase.child("pizza").getKey();
         //.child pizza
 
         location = (TextView) findViewById(R.id.edRoomNumText);
+
         //location.setText(loc);
+
         vendor = (TextView) findViewById(R.id.edVendorText);
         toppings = (TextView) findViewById(R.id.toppingsEd);
         vegan = (CheckBox) findViewById(R.id.veganBox);
         vegetarian = (CheckBox) findViewById(R.id.vegBox);
         kosher = (CheckBox) findViewById(R.id.kosherBox);
         glutenFree = (CheckBox) findViewById(R.id.gfBox);
-        backButton = (Button) findViewById(R.id.backButton);
         doneButton = (Button) findViewById(R.id.doneButton);
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //go back to MainActivity
-                finish();
-            }
-        });
+        //TODO: set all UI elements to correct fields
+
 
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override

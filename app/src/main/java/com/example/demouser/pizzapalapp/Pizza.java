@@ -28,13 +28,6 @@ public class Pizza
     private boolean isKosher;
     private boolean isGF;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     private String id;
     private String vendor;
@@ -42,6 +35,14 @@ public class Pizza
     private String toppings;
     private String building;
     private String room;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public boolean isVegan() {
         return isVegan;
