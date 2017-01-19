@@ -59,8 +59,8 @@ public class PizzaViewActivity extends AppCompatActivity {
 
 
         //TODO: set all UI elements to correct fields
-        location.setText(pizza.child("location").getKey());
-        vendor.setText(pizza.child("vendor").getKey());
+        location.setText(pizza.child("location").toString());
+        vendor.setText(pizza.child("vendor").toString());
         toppings.setText(pizza.child("toppings").getKey());
 
 
