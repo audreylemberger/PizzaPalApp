@@ -8,8 +8,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class PizzaViewActivity extends AppCompatActivity {
 
@@ -38,8 +41,19 @@ public class PizzaViewActivity extends AppCompatActivity {
         //String loc = intent.getStringExtra(Pizza.getBuilding()) + " " + intent.getStringExtra(Pizza.getRoom());
         id = intent.getStringExtra(MainActivity.KEY_VIEW);
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference pizza = mFirebaseDatabase.child("pizza").child(id);
+        //DatabaseReference pizza = mFirebaseDatabase.child("pizza").child(id);
 
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                pizza = dataSnapshot.getValue(Pizza.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
 
 
       //  mFirebaseDatabase.child("pizza").child(pizza.getId()).child("isVegan");
@@ -48,7 +62,6 @@ public class PizzaViewActivity extends AppCompatActivity {
         //.child pizza
 
         location = (TextView) findViewById(R.id.edRoomNumText);
-        //location.setText(loc);
         vendor = (TextView) findViewById(R.id.edVendorText);
         toppings = (TextView) findViewById(R.id.toppingsEd);
         vegan = (CheckBox) findViewById(R.id.veganBox);
@@ -60,21 +73,14 @@ public class PizzaViewActivity extends AppCompatActivity {
 
         //TODO: set all UI elements to correct fields
 
-        String loc = pizza.child("building").getKey().toString() + " " + pizza.child("room").getKey().toString();
+        String loc = pizza.getBuilding() + " " + pizza.getRoom();
         location.setText(loc);
-        vendor.setText(pizza.child("vendor").getKey());
-        vendor.setText(pizza.child("vendor").toString());
-        toppings.setText(pizza.child("toppings").getKey());
-
-
-        toppings.setText(pizza.child("toppings").getKey());
-
-
-
-        vegan.setChecked(false);
-        vegetarian.setChecked(false);
-        kosher.setChecked(false);
-        glutenFree.setChecked(false);
+        vendor.setText(pizza.getVendor());
+        toppings.setText(pizza.getToppings());
+        vegan.setChecked(pizza.isVegan());
+        vegetarian.setChecked(pizza.isVeg());
+        kosher.setChecked(pizza.isKosher());
+        glutenFree.setChecked(pizza.isGF());
 
 
 
