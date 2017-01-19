@@ -37,7 +37,7 @@ public class PizzaViewActivity extends AppCompatActivity {
 
 
         //get it from firebase
-        boolean isVegan = mFirebaseDatabase.child("pizza").child(pizza.getId()).child("isVegan");
+        //boolean isVegan = mFirebaseDatabase.child("pizza").child(pizza.getId()).child("isVegan");
         
        // mFirebaseDatabase.child("players").child(state.getId()).setValue(state);
         //.child pizza
