@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity
         implements GoogleApiClient.OnConnectionFailedListener {
 
     private static final int REQUEST_NEW_ITEM = 101;
-    public static final String KEY_EDIT = "KEY_EDIT";
+    public static final String KEY_VIEW = "KEY_VIEW";
     private Pizza itemToEditHolder;
     private int itemToEditPosition = -1;
 
@@ -76,6 +76,12 @@ public class MainActivity extends AppCompatActivity
             priceView = (TextView) itemView.findViewById(R.id.priceView);
             ivIcon = (ImageView) itemView.findViewById(R.id.imageNote);
             viewButton = (Button) itemView.findViewById(R.id.viewItem);
+            viewButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //invisible textview
+                }
+            });
         }
     }
 
@@ -229,6 +235,16 @@ public class MainActivity extends AppCompatActivity
 
         mMessageRecyclerView.setLayoutManager(mLinearLayoutManager);
         mMessageRecyclerView.setAdapter(mFirebaseadapter);
+    }
+
+    //how to get position in list recycler
+    public void showViewPizzaActivity(Pizza pizzaToView, int position) {
+        //how to get position of recyclerview item?
+        mMessageRecyclerView.getChildAdapterPosition(mMessageRecyclerView.getFocusedChild());
+        //TODO
+        Intent intent = new Intent(this, PizzaViewActivity.class);
+        intent.putExtra(KEY_VIEW, position);
+        startActivity(intent);
     }
 }
 

@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+
 public class PizzaViewActivity extends AppCompatActivity {
 
     private TextView location;
@@ -15,14 +17,16 @@ public class PizzaViewActivity extends AppCompatActivity {
     private TextView toppings;
     private CheckBox vegan;
     private CheckBox vegetarian;
-<<<<<<< HEAD
+
     private CheckBox gf;
-=======
+
     private CheckBox kosher;
     private CheckBox glutenFree;
     private Button backButton;
     private Button doneButton;
->>>>>>> origin/master
+    private DatabaseReference mFirebaseDatabase;
+    private Pizza pizza;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +37,12 @@ public class PizzaViewActivity extends AppCompatActivity {
         String loc = intent.getStringExtra(Pizza.getBuilding()) + " " + intent.getStringExtra(Pizza.getRoom());
 
 
+        //get it from firebase
+        mFirebaseDatabase.child("pizza").child(pizza.getId()).setValue(game);
+        //.child pizza
+
         location = (TextView) findViewById(R.id.edRoomNumText);
-        location.setText(loc);
+        //location.setText(loc);
         vendor = (TextView) findViewById(R.id.edVendorText);
         toppings = (TextView) findViewById(R.id.toppingsEd);
         vegan = (CheckBox) findViewById(R.id.veganBox);

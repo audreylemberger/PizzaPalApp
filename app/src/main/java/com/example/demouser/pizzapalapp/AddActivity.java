@@ -40,9 +40,9 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
-        if (getIntent().getSerializableExtra(MainActivity.KEY_EDIT) != null) {
-            itemToEdit = (Pizza) getIntent().getSerializableExtra(MainActivity.KEY_EDIT);
-        }
+//        if (getIntent().getSerializableExtra(MainActivity.KEY_EDIT) != null) {
+//            itemToEdit = (Pizza) getIntent().getSerializableExtra(MainActivity.KEY_EDIT);
+//        }
         addButton = ((Button)findViewById(R.id.backButton));
         cancelButton = ((Button)findViewById(R.id.doneButton));
         gfBox = ((CheckBox) findViewById(R.id.gfBox));
@@ -99,7 +99,7 @@ public class AddActivity extends AppCompatActivity {
     private void configureDatabase(){
         mFirebaseDatabase =  FirebaseDatabase.getInstance().getReference();
 
-        mFirebaseDatabase.child("players").addChildEventListener(new ChildEventListener() {
+        mFirebaseDatabase.child("pizza").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 itemResult = dataSnapshot.getValue(Pizza.class);
