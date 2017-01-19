@@ -47,9 +47,7 @@ public class PizzaViewActivity extends AppCompatActivity {
         //.child pizza
 
         location = (TextView) findViewById(R.id.edRoomNumText);
-
         //location.setText(loc);
-
         vendor = (TextView) findViewById(R.id.edVendorText);
         toppings = (TextView) findViewById(R.id.toppingsEd);
         vegan = (CheckBox) findViewById(R.id.veganBox);
@@ -60,10 +58,14 @@ public class PizzaViewActivity extends AppCompatActivity {
 
 
         //TODO: set all UI elements to correct fields
+        location.setText(pizza.child("location").getKey());
         vendor.setText(pizza.child("vendor").getKey());
         toppings.setText(pizza.child("toppings").getKey());
 
-
+        vegan.setChecked(false);
+        vegetarian.setChecked(false);
+        kosher.setChecked(false);
+        glutenFree.setChecked(false);
 
 
 //
