@@ -110,6 +110,7 @@ public class AddActivity extends AppCompatActivity {
         pizza.setGF(gfBox.isChecked());
         pizza.setVendor(venderInfo.getText().toString());
 
+
         //TODO: figure out setting ID
         mFirebaseDatabase.child("pizza").push().setValue(pizza);
 
