@@ -18,7 +18,6 @@ public class PizzaViewActivity extends AppCompatActivity {
     private CheckBox gf;
     private CheckBox kosher;
     private CheckBox glutenFree;
-    private Button backButton;
     private Button doneButton;
 
 
@@ -28,27 +27,20 @@ public class PizzaViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pizza_view);
 
         Intent intent = getIntent();
-        String loc = intent.getStringExtra(Pizza.getBuilding()) + " " + intent.getStringExtra(Pizza.getRoom());
+        //String loc = intent.getStringExtra(Pizza.getBuilding()) + " " + intent.getStringExtra(Pizza.getRoom());
 
 
         location = (TextView) findViewById(R.id.edRoomNumText);
-        location.setText(loc);
         vendor = (TextView) findViewById(R.id.edVendorText);
         toppings = (TextView) findViewById(R.id.toppingsEd);
         vegan = (CheckBox) findViewById(R.id.veganBox);
         vegetarian = (CheckBox) findViewById(R.id.vegBox);
         kosher = (CheckBox) findViewById(R.id.kosherBox);
         glutenFree = (CheckBox) findViewById(R.id.gfBox);
-        backButton = (Button) findViewById(R.id.backButton);
         doneButton = (Button) findViewById(R.id.doneButton);
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //go back to MainActivity
-                finish();
-            }
-        });
+        //TODO: set all UI elements to correct fields
+
 
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
