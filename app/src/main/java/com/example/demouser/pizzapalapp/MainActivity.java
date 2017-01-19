@@ -250,5 +250,37 @@ public class MainActivity extends AppCompatActivity
         intent.putExtra(KEY_VIEW, position);
         startActivity(intent);
     }
+
+    //get the correct name of the image resource given the dietary restrictions
+    //TODO: integrate this somehow
+    public String getPicName(boolean isVegan, boolean isVeg, boolean isKosher, boolean isGF) {
+        StringBuilder builder = new StringBuilder();
+        if(isVegan) {
+            builder.append("vgn");
+        }
+        if(isVeg) {
+            if(builder.length() == 0) {
+                builder.append("veg");
+            }
+        }
+        if(isKosher) {
+            if(builder.length() > 0) {
+                builder.append("_");
+            }
+            builder.append("ksh");
+        }
+        if(isGF) {
+            if(builder.length() > 0) {
+                builder.append("_");
+            }
+            builder.append("gf");
+        }
+        if(builder.length() == 0)
+        {
+            builder.append("none");
+        }
+        builder.append(".png");
+        return builder.toString();
+    }
 }
 
