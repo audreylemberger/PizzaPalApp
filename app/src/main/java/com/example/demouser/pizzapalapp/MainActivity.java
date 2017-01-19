@@ -234,6 +234,38 @@ public class MainActivity extends AppCompatActivity
                 viewHolder.itemNameView.setText(model.getBuilding() + " " +model.getRoom());
                 viewHolder.priceView.setText(model.getToppings());
 
+                //find the correct image resource
+                if(model.isVegan()) {
+                    if(model.isGF()) {
+                        viewHolder.ivIcon.setImageResource(R.drawable.vgn_ksh_gf);
+                    }
+                    else {
+                        viewHolder.ivIcon.setImageResource(R.drawable.vgn_ksh);
+                    }
+                }
+                else if(model.isVeg()) {
+                    if(model.isGF()) {
+                        viewHolder.ivIcon.setImageResource(R.drawable.veg_ksh_gf);
+                    }
+                    else {
+                        viewHolder.ivIcon.setImageResource(R.drawable.veg_ksh);
+                    }
+                }
+                else if(model.isKosher()) {
+                    if(model.isGF()) {
+                        viewHolder.ivIcon.setImageResource(R.drawable.ksh_gf);
+                    }
+                    else {
+                        viewHolder.ivIcon.setImageResource(R.drawable.ksh);
+                    }
+                }
+                else if(model.isGF()) {
+                    viewHolder.ivIcon.setImageResource(R.drawable.gf);
+                }
+                else {
+                    viewHolder.ivIcon.setImageResource(R.drawable.none);
+                }
+
 
             }
         };
@@ -253,7 +285,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     //get the correct name of the image resource given the dietary restrictions
-    //TODO: integrate this somehow
     public String getPicName(boolean isVegan, boolean isVeg, boolean isKosher, boolean isGF) {
         StringBuilder builder = new StringBuilder();
         if(isVegan) {
