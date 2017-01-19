@@ -28,7 +28,7 @@
                 android:layout_alignLeft="@+id/roomText"
                 android:layout_alignStart="@+id/roomText"
                 android:layout_marginTop="15dp"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+                 />
 
 
             <CheckBox
@@ -57,11 +57,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/roomText"
-                android:layout_alightStart="@+id/warningText"
+                android:layout_alignStart="@+id/warningText"
+                android:layout_alignLeft="@+id/warningText"
                 android:layout_alignTop="@+id/edRoomNumText"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+                 />
 
             <TextView
                 android:text="Vendor:"
@@ -72,7 +73,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="19dp"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+                />
 
             <TextView
                 android:text="Dietary Restrictions:"
@@ -83,7 +84,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="27dp"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+                 />
 
             <CheckBox
                 android:text="Kosher"
@@ -115,7 +116,7 @@
                 android:ems="10"
                 android:id="@+id/edRoomNumText"
                 android:layout_marginTop="19dp"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+
                 android:layout_below="@+id/warningText"
                 android:layout_alignLeft="@+id/toppingsEd"
                 android:layout_alignStart="@+id/toppingsEd" />
@@ -126,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/toppingsEd"
 
-                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+
                 android:layout_alignBaseline="@+id/toppingsText"
                 android:layout_alignBottom="@+id/toppingsText"
                 android:layout_alignLeft="@+id/veganBox"
@@ -138,7 +139,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:id="@+id/edVendorText"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+
                 android:layout_alignBaseline="@+id/vendorText"
                 android:layout_alignBottom="@+id/vendorText"
                 android:layout_alignLeft="@+id/toppingsEd"

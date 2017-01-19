@@ -73,6 +73,9 @@ public class AddActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 configureDatabase();
+                Intent mainIntent = new Intent(AddActivity.this,MainActivity.class);
+                AddActivity.this.startActivity(mainIntent);
+                AddActivity.this.finish();
 
             }
         });

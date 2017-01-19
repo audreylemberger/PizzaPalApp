@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity
     private GoogleApiClient mGoogleApiClient;
     private static final String MESSAGE_URL = "http://friendlychat.firebase.google.com/message/";
 
-    private Button mAddButton;
+
     private RecyclerView mMessageRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
     private ProgressBar mProgressBar;
@@ -140,20 +140,38 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        mAddButton = (Button) findViewById(R.id.addPizzaButton);
-        mAddButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Send messages on click.
-//                Pizza message = new FriendlyMessage(mMessageEditText.getText().toString(),
-//                        mUsername,mPhotoUrl);
-//                mFirebaseDataReference.child(MESSAGES_CHILD).push().setValue(message);
-//                mMessageEditText.setText("");
+//        mAddButton = (Button) findViewById(R.id.addPizzaButton);
+//        mAddButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // Send messages on click.
+////                Pizza message = new FriendlyMessage(mMessageEditText.getText().toString(),
+////                        mUsername,mPhotoUrl);
+////                mFirebaseDataReference.child(MESSAGES_CHILD).push().setValue(message);
+////                mMessageEditText.setText("");
+//
+//
+//                //change to add pizza activity
+//            }
+//        });
+    }
 
 
-                //change to add pizza activity
-            }
-        });
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_add) {
+            Intent mainIntent = new Intent(MainActivity.this,AddActivity.class);
+            MainActivity.this.startActivity(mainIntent);
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -185,22 +203,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.sign_out_menu:
-                mFirebaseAuth.signOut();
-                Auth.GoogleSignInApi.signOut(mGoogleApiClient);
-                mUsername = ANONYMOUS;
-                mPhotoUrl = "";
-                startActivity(new Intent(this, SignInActivity.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
 
-        }
-
-    }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {

@@ -12,7 +12,7 @@ public class PizzaViewActivity extends AppCompatActivity {
     private TextView toppings;
     private CheckBox vegan;
     private CheckBox vegetarian;
-    private CheckBox
+    private CheckBox gf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
