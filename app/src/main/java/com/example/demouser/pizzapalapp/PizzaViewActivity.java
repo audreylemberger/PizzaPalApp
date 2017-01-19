@@ -1,5 +1,6 @@
 package com.example.demouser.pizzapalapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,7 +29,12 @@ public class PizzaViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pizza_view);
 
+        Intent intent = getIntent();
+        String loc = intent.getStringExtra(Pizza.getBuilding()) + " " + intent.getStringExtra(Pizza.getRoom());
+
+
         location = (TextView) findViewById(R.id.edRoomNumText);
+        location.setText(loc);
         vendor = (TextView) findViewById(R.id.edVendorText);
         toppings = (TextView) findViewById(R.id.toppingsEd);
         vegan = (CheckBox) findViewById(R.id.veganBox);
@@ -41,7 +47,8 @@ public class PizzaViewActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: go back to MainActivity
+                //go back to MainActivity
+                finish();
             }
         });
 
@@ -49,7 +56,8 @@ public class PizzaViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO: delete pizza
-                //TODO: go back to MainActivity
+                //go back to MainActivity
+                finish();
             }
         });
 
