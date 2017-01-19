@@ -15,14 +15,12 @@ public class PizzaViewActivity extends AppCompatActivity {
     private TextView toppings;
     private CheckBox vegan;
     private CheckBox vegetarian;
-<<<<<<< HEAD
     private CheckBox gf;
-=======
     private CheckBox kosher;
     private CheckBox glutenFree;
     private Button backButton;
     private Button doneButton;
->>>>>>> origin/master
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
