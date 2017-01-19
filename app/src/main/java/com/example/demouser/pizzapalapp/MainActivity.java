@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity
         private TextView itemNameView;
         private TextView priceView;
         private ImageView ivIcon;
+        private TextView pizzaId;
 
         private Button viewButton;
 
@@ -76,11 +77,13 @@ public class MainActivity extends AppCompatActivity
             priceView = (TextView) itemView.findViewById(R.id.priceView);
             ivIcon = (ImageView) itemView.findViewById(R.id.imageNote);
             viewButton = (Button) itemView.findViewById(R.id.viewItem);
+            pizzaId = (TextView) itemView.findViewById(R.id.pizzaId);
             viewButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), PizzaViewActivity.class);
                     intent.putExtra(KEY_VIEW, getAdapterPosition());
+
                     v.getContext().startActivity(intent);
 
                 }
@@ -233,6 +236,7 @@ public class MainActivity extends AppCompatActivity
                 mProgressBar.setVisibility(ProgressBar.INVISIBLE);
                 viewHolder.itemNameView.setText(model.getBuilding() + " " +model.getRoom());
                 viewHolder.priceView.setText(model.getToppings());
+                viewHolder.
 
                 //find the correct image resource
                 if(model.isVegan()) {

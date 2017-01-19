@@ -37,6 +37,7 @@ public class PizzaViewActivity extends AppCompatActivity {
         Intent intent = getIntent();
         //String loc = intent.getStringExtra(Pizza.getBuilding()) + " " + intent.getStringExtra(Pizza.getRoom());
         id = intent.getStringExtra(MainActivity.KEY_VIEW);
+
         DatabaseReference pizza = mFirebaseDatabase.child("pizza").child(id);
 
 
@@ -61,6 +62,8 @@ public class PizzaViewActivity extends AppCompatActivity {
 
         //TODO: set all UI elements to correct fields
         vendor.setText(pizza.child("vendor").getKey());
+        toppings.setText(pizza.child("toppings").getKey());
+
         toppings.setText(pizza.child("toppings").getKey());
 
 
