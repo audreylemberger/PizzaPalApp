@@ -74,14 +74,7 @@ public class AddActivity extends AppCompatActivity {
 
                 configureDatabase();
 
-                Pizza pizza = new Pizza();
-                pizza.setBuilding(buildingItems[buildings.getSelectedItemPosition()]);
-                pizza.setRoom(roomNumber.getText().toString());
-                pizza.setVegan(veganBox.isChecked());
-                pizza.setVeg(vegBox.isChecked());
-                pizza.setKosher(kosherBox.isChecked());
-                pizza.setGF(gfBox.isChecked());
-                mFirebaseDatabase.child("pizza").push().setValue(pizza);
+
 
                 Intent mainIntent = new Intent(AddActivity.this,MainActivity.class);
                 AddActivity.this.startActivity(mainIntent);
@@ -115,6 +108,8 @@ public class AddActivity extends AppCompatActivity {
         pizza.setVeg(vegBox.isChecked());
         pizza.setKosher(kosherBox.isChecked());
         pizza.setGF(gfBox.isChecked());
+        pizza.setVendor(venderInfo.getText().toString());
+
         //TODO: figure out setting ID
         mFirebaseDatabase.child("pizza").push().setValue(pizza);
 

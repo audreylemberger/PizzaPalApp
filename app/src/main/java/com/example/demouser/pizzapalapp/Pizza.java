@@ -115,7 +115,7 @@ public class Pizza
     }
 
 
-    public Pizza(String room, String building, String toppings, String vend, boolean isVegan, boolean
+    public Pizza(String room, String building, String toppings, String vendor, boolean isVegan, boolean
             isVeg, boolean isKosher, boolean isGF)
     {
         //indices are vegetarian, vegan, kosher/halal, gluten free
@@ -125,7 +125,7 @@ public class Pizza
         this.toppings = toppings;
 
 
-        this.vendor = vend;
+        this.vendor = vendor;
         this.isVegan = isVegan;
         this.isVeg = isVeg;
         this.isKosher = isKosher;

@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity
     private Pizza itemToEditHolder;
     private int itemToEditPosition = -1;
 
-    public static class MessageViewHolder extends RecyclerView.ViewHolder {
+    public class MessageViewHolder extends RecyclerView.ViewHolder {
         private TextView itemNameView;
         private TextView priceView;
         private ImageView ivIcon;
@@ -79,7 +79,9 @@ public class MainActivity extends AppCompatActivity
             viewButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //invisible textview
+                    Intent intent = new Intent(MainActivity.this, PizzaViewActivity.class);
+                    intent.putExtra(KEY_VIEW, mMessageRecyclerView);
+                    startActivity(intent);
                 }
             });
         }
@@ -96,6 +98,7 @@ public class MainActivity extends AppCompatActivity
     private SharedPreferences mSharedPreferences;
     private GoogleApiClient mGoogleApiClient;
     private static final String MESSAGE_URL = "http://friendlychat.firebase.google.com/message/";
+
 
 
     private RecyclerView mMessageRecyclerView;
@@ -195,6 +198,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onResume() {
         super.onResume();
+        configureFirebaseAdapater();
     }
 
     @Override
@@ -222,7 +226,7 @@ public class MainActivity extends AppCompatActivity
     private void configureFirebaseAdapater(){
         mFirebaseDataReference = FirebaseDatabase.getInstance().getReference();
         //inner class of MainActivity
-        mFirebaseadapter = new FirebaseRecyclerAdapter<Pizza, MessageViewHolder>(Pizza.class, R.layout.note_row, MessageViewHolder.class, mFirebaseDataReference.child(MESSAGES_CHILD)) {
+        mFirebaseadapter = new FirebaseRecyclerAdapter<Pizza, MessageViewHolder>(Pizza.class, R.layout.note_row, MessageViewHolder.class, mFirebaseDataReference.child("pizza")) {
             @Override
             protected void populateViewHolder(MessageViewHolder viewHolder, Pizza model, int position) {
                 mProgressBar.setVisibility(ProgressBar.INVISIBLE);
