@@ -37,7 +37,7 @@ public class PizzaViewActivity extends AppCompatActivity {
         Intent intent = getIntent();
         //String loc = intent.getStringExtra(Pizza.getBuilding()) + " " + intent.getStringExtra(Pizza.getRoom());
         id = intent.getStringExtra(MainActivity.KEY_VIEW);
-
+        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference pizza = mFirebaseDatabase.child("pizza").child(id);
 
 
