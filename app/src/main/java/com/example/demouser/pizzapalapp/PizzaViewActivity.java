@@ -25,6 +25,7 @@ public class PizzaViewActivity extends AppCompatActivity {
 
     private DatabaseReference mFirebaseDatabase;
     private Pizza pizza;
+    private String id;
 
 
 
@@ -35,7 +36,7 @@ public class PizzaViewActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         //String loc = intent.getStringExtra(Pizza.getBuilding()) + " " + intent.getStringExtra(Pizza.getRoom());
-        String id = intent.getStringExtra(MainActivity.KEY_VIEW);
+        id = intent.getStringExtra(MainActivity.KEY_VIEW);
         DatabaseReference pizza = mFirebaseDatabase.child("pizza").child(id);
 
 
@@ -78,6 +79,7 @@ public class PizzaViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO: delete pizza
+                mFirebaseDatabase.child("pizza").child(id).removeValue();
                 //go back to MainActivity
                 finish();
             }
