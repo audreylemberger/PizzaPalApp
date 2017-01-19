@@ -54,8 +54,8 @@ public class PizzaViewActivity extends AppCompatActivity {
 
             }
         };
-        mFirebaseDatabase.addValueEventListener(listener);
-
+        //mFirebaseDatabase.addValueEventListener(listener);
+        mFirebaseDatabase.addListenerForSingleValueEvent(listener);
 
       //  mFirebaseDatabase.child("pizza").child(pizza.getId()).child("isVegan");
 
