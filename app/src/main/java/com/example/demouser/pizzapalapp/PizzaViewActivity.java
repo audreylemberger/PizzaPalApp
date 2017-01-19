@@ -37,7 +37,9 @@ public class PizzaViewActivity extends AppCompatActivity {
 
 
         //get it from firebase
-        mFirebaseDatabase.child("pizza").getKey();
+        mFirebaseDatabase.child("pizza").child(pizza.getId()).child("isVegan");
+        
+       // mFirebaseDatabase.child("players").child(state.getId()).setValue(state);
         //.child pizza
 
         location = (TextView) findViewById(R.id.edRoomNumText);
@@ -51,6 +53,8 @@ public class PizzaViewActivity extends AppCompatActivity {
         kosher = (CheckBox) findViewById(R.id.kosherBox);
         glutenFree = (CheckBox) findViewById(R.id.gfBox);
         doneButton = (Button) findViewById(R.id.doneButton);
+
+
 
         //TODO: set all UI elements to correct fields
 
