@@ -108,6 +108,15 @@ public class AddActivity extends AppCompatActivity {
 
     private void configureDatabase(){
         mFirebaseDatabase =  FirebaseDatabase.getInstance().getReference();
+        Pizza pizza = new Pizza();
+        pizza.setBuilding(buildingItems[buildings.getSelectedItemPosition()]);
+        pizza.setRoom(roomNumber.getText().toString());
+        pizza.setVegan(veganBox.isChecked());
+        pizza.setVeg(vegBox.isChecked());
+        pizza.setKosher(kosherBox.isChecked());
+        pizza.setGF(gfBox.isChecked());
+        //TODO: figure out setting ID
+        mFirebaseDatabase.child("pizza").push().setValue(pizza);
 
         mFirebaseDatabase.child("pizza").addChildEventListener(new ChildEventListener() {
             @Override
