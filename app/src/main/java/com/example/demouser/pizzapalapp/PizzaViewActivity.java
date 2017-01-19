@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class PizzaViewActivity extends AppCompatActivity {
 
@@ -34,6 +35,8 @@ public class PizzaViewActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         //String loc = intent.getStringExtra(Pizza.getBuilding()) + " " + intent.getStringExtra(Pizza.getRoom());
+        String id = intent.getStringExtra(MainActivity.KEY_VIEW);
+        DatabaseReference pizza = mFirebaseDatabase.child("pizza").child(id);
 
 
         //get it from firebase
@@ -54,9 +57,14 @@ public class PizzaViewActivity extends AppCompatActivity {
         glutenFree = (CheckBox) findViewById(R.id.gfBox);
         doneButton = (Button) findViewById(R.id.doneButton);
 
-
-
         //TODO: set all UI elements to correct fields
+        vendor.setText(pizza.child("vendor").getKey());
+        toppings.setText(pizza.child("toppings").getKey());
+
+
+
+
+
 
 
         doneButton.setOnClickListener(new View.OnClickListener() {

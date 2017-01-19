@@ -112,7 +112,7 @@ public class AddActivity extends AppCompatActivity {
         mFirebaseDatabase.child("pizza").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                
+
 
             }
 
