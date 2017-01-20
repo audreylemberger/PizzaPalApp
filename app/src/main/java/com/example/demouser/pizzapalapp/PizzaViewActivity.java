@@ -35,6 +35,14 @@ public class PizzaViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pizza_view);
+        location = (TextView) findViewById(R.id.edRoomNumText);
+        vendor = (TextView) findViewById(R.id.edVendorText);
+        toppings = (TextView) findViewById(R.id.toppingsEd);
+        vegan = (CheckBox) findViewById(R.id.veganBox);
+        vegetarian = (CheckBox) findViewById(R.id.vegBox);
+        kosher = (CheckBox) findViewById(R.id.kosherBox);
+        glutenFree = (CheckBox) findViewById(R.id.gfBox);
+        doneButton = (Button) findViewById(R.id.doneButton);
 
         Intent intent = getIntent();
         id = intent.getStringExtra(MainActivity.KEY_VIEW);
@@ -52,14 +60,6 @@ public class PizzaViewActivity extends AppCompatActivity {
             }
         });
 
-        location = (TextView) findViewById(R.id.edRoomNumText);
-        vendor = (TextView) findViewById(R.id.edVendorText);
-        toppings = (TextView) findViewById(R.id.toppingsEd);
-        vegan = (CheckBox) findViewById(R.id.veganBox);
-        vegetarian = (CheckBox) findViewById(R.id.vegBox);
-        kosher = (CheckBox) findViewById(R.id.kosherBox);
-        glutenFree = (CheckBox) findViewById(R.id.gfBox);
-        doneButton = (Button) findViewById(R.id.doneButton);
 
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
