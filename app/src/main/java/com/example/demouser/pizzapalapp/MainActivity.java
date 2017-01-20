@@ -236,7 +236,8 @@ public class MainActivity extends AppCompatActivity
                 mProgressBar.setVisibility(ProgressBar.INVISIBLE);
                 viewHolder.itemNameView.setText(model.getBuilding() + " " +model.getRoom());
                 viewHolder.priceView.setText(model.getToppings());
-                viewHolder.pizzaId.setText(model.getId());
+                String id = "-KasXvEm1-AFWTtB6Ue2";
+                viewHolder.pizzaId.setText(id);
 
                 //find the correct image resource
                 if(model.isVegan()) {

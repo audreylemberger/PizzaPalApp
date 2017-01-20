@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,11 +48,56 @@ public class PizzaViewActivity extends AppCompatActivity {
         Intent intent = getIntent();
         id = intent.getStringExtra(MainActivity.KEY_VIEW);
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
+        mFirebaseDatabase.child("pizza").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                doSomethingElseWithPizza(dataSnapshot);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                doSomethingElseWithPizza(dataSnapshot);
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         mFirebaseDatabase.child("pizza").child(id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                pizza = dataSnapshot.getValue(Pizza.class);
-                doSomethingWithPizza();
+                //doSomethingElseWithPizza(dataSnapshot);
+//                Pizza pizza = new Pizza(dataSnapshot.getValue(Pizza.class).getRoom(), dataSnapshot.getValue(Pizza.class).getBuilding(), dataSnapshot.getValue(Pizza.class).getToppings(), dataSnapshot.getValue(Pizza.class).getVendor(),
+//                        dataSnapshot.getValue(Pizza.class).isVegan(), dataSnapshot.getValue(Pizza.class).isVeg(), dataSnapshot.getValue(Pizza.class).isKosher(),
+//                        dataSnapshot.getValue(Pizza.class).isGF());
+
+                String loc = dataSnapshot.getValue(Pizza.class).getBuilding() + " " + dataSnapshot.getValue(Pizza.class).getRoom();
+                location.setText(loc);
+                vendor.setText(dataSnapshot.getValue(Pizza.class).getVendor());
+                toppings.setText(dataSnapshot.getValue(Pizza.class).getToppings());
+                vegan.setChecked(dataSnapshot.getValue(Pizza.class).isVegan());
+                if(dataSnapshot.getValue(Pizza.class).isVegan()) {
+                    vegetarian.setChecked(true);
+                    kosher.setChecked(true);
+                }
+                else if(dataSnapshot.getValue(Pizza.class).isVeg()) {
+                    kosher.setChecked(true);
+                }
+                glutenFree.setChecked(dataSnapshot.getValue(Pizza.class).isGF());
+
+                //dataSnapshot.getValue(Pizza.class);
+                //doSomethingWithPizza(pizza);
             }
 
             @Override
@@ -73,7 +119,7 @@ public class PizzaViewActivity extends AppCompatActivity {
 
     }
 
-    public void doSomethingWithPizza() {
+    public void doSomethingWithPizza(Pizza pizza) {
         //TODO: set all UI elements to correct fields
         String loc = pizza.getBuilding() + " " + pizza.getRoom();
         location.setText(loc);
@@ -84,6 +130,22 @@ public class PizzaViewActivity extends AppCompatActivity {
         kosher.setChecked(pizza.isKosher());
         glutenFree.setChecked(pizza.isGF());
     }
+
+    public void doSomethingElseWithPizza(DataSnapshot dataSnapshot) {
+        Pizza pizza = dataSnapshot.getValue(Pizza.class);
+        if(pizza.getId() == id) {
+            PizzaViewActivity.this.pizza = pizza;
+            String loc = pizza.getBuilding() + " " + pizza.getRoom();
+            location.setText(loc);
+            vendor.setText(pizza.getVendor());
+            toppings.setText(pizza.getToppings());
+            vegan.setChecked(pizza.isVegan());
+            vegetarian.setChecked(pizza.isVeg());
+            kosher.setChecked(pizza.isKosher());
+            glutenFree.setChecked(pizza.isGF());
+        }
+    }
+
 
 
 }
