@@ -31,36 +31,26 @@ public class PizzaViewActivity extends AppCompatActivity {
     private String id;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pizza_view);
 
         Intent intent = getIntent();
-        //String loc = intent.getStringExtra(Pizza.getBuilding()) + " " + intent.getStringExtra(Pizza.getRoom());
         id = intent.getStringExtra(MainActivity.KEY_VIEW);
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
-        //DatabaseReference pizza = mFirebaseDatabase.child("pizza").child(id);
-
-        ValueEventListener listener = new ValueEventListener() {
+        mFirebaseDatabase.child("pizza").child(id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 pizza = dataSnapshot.getValue(Pizza.class);
+                doSomethingWithPizza();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        };
-        //mFirebaseDatabase.addValueEventListener(listener);
-        mFirebaseDatabase.addListenerForSingleValueEvent(listener);
-
-      //  mFirebaseDatabase.child("pizza").child(pizza.getId()).child("isVegan");
-
-       // mFirebaseDatabase.child("players").child(state.getId()).setValue(state);
-        //.child pizza
+        });
 
         location = (TextView) findViewById(R.id.edRoomNumText);
         vendor = (TextView) findViewById(R.id.edVendorText);
@@ -70,28 +60,6 @@ public class PizzaViewActivity extends AppCompatActivity {
         kosher = (CheckBox) findViewById(R.id.kosherBox);
         glutenFree = (CheckBox) findViewById(R.id.gfBox);
         doneButton = (Button) findViewById(R.id.doneButton);
-
-
-        //TODO: set all UI elements to correct fields
-        String loc = pizza.getBuilding() + " " + pizza.getRoom();
-        location.setText(loc);
-        vendor.setText(pizza.getVendor());
-        toppings.setText(pizza.getToppings());
-        vegan.setChecked(pizza.isVegan());
-        vegetarian.setChecked(pizza.isVeg());
-        kosher.setChecked(pizza.isKosher());
-        glutenFree.setChecked(pizza.isGF());
-
-
-
-//
-//        vendor.setText(mFirebaseDatabase.child("pizza").child(pizza.getId()).child("vendor").toString());
-//        toppings.setText(mFirebaseDatabase.child("pizza").child(pizza.getId()).child("toppings").toString());
-//        location.setText(mFirebaseDatabase.child("pizza").child(pizza.getId()).child("building").toString() + " "
-//        + mFirebaseDatabase.child("pizza").child(pizza.getId()).child("room").toString());
-//
-
-
 
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +71,18 @@ public class PizzaViewActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void doSomethingWithPizza() {
+        //TODO: set all UI elements to correct fields
+        String loc = pizza.getBuilding() + " " + pizza.getRoom();
+        location.setText(loc);
+        vendor.setText(pizza.getVendor());
+        toppings.setText(pizza.getToppings());
+        vegan.setChecked(pizza.isVegan());
+        vegetarian.setChecked(pizza.isVeg());
+        kosher.setChecked(pizza.isKosher());
+        glutenFree.setChecked(pizza.isGF());
     }
 
 
